@@ -1,0 +1,19 @@
+service: baap-auth-api
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: prod
+  region: us-east-2
+  memorySize: 128
+
+
+functions:
+  api:
+    handler: app.handler
+    events:
+      - httpApi: '*'

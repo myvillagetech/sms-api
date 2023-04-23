@@ -1,0 +1,14 @@
+const mongoose = require("mongoose");
+
+const $pascalCaseNameSchema = new mongoose.Schema(
+    {
+        name: {
+            type: String,
+            required: true,
+        }
+    },
+    { timestamps: true }
+);
+
+const $pascalCaseNameModel = mongoose.model("$camelCaseName", $pascalCaseNameSchema);
+module.exports = $pascalCaseNameModel;

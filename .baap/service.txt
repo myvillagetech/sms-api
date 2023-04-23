@@ -1,0 +1,10 @@
+const $pascalCaseNameModel = require("../schema/$camelCaseName.schema");
+const BaseService = require("@baapcompany/core-api/services/base.service");
+
+class $pascalCaseNameService extends BaseService {
+    constructor(dbModel, entityName) {
+        super(dbModel, entityName);
+    }
+}
+
+module.exports = new $pascalCaseNameService($pascalCaseNameModel, '$camelCaseName');
