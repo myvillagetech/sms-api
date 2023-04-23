@@ -9,6 +9,7 @@ const UserSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true,
+            default: 123456,
         },
         otp: {
             type: Number,
@@ -16,8 +17,8 @@ const UserSchema = new mongoose.Schema(
         },
         email: {
             type: String,
-            required: true,
-            unique: true,
+            // required: true,
+            // unique: true,
         },
         phoneNumber: {
             type: String,
