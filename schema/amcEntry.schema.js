@@ -18,7 +18,10 @@ const AmcEntrySchema = new mongoose.Schema(
             type: String,
             required: true,
             enum: ["PaymentDone", "Approved", "Rejected"],
-        }
+        },
+        photoes: {
+            type: [String],
+        },
 
     },
     { timestamps: true }
