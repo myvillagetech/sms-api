@@ -17,6 +17,18 @@ router.post(
     }
 );
 
+router.post(
+    "/admin/add-member",
+    checkSchema(require("../dto/member.dto")),
+    async (req, res, next) => {
+        if (ValidationHelper.requestValidationErrors(req, res)) {
+            return;
+        }
+        const serviceResponse = await service.adminRegisterMember(req.body);
+        requestResponsehelper.sendResponse(res, serviceResponse);
+    }
+);
+
 router.delete("/:id", async (req, res) => {
     const serviceResponse = await service.deleteById(req.params.id);
 

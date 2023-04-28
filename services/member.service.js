@@ -7,7 +7,11 @@ class MemberService extends BaseService {
         super(dbModel, entityName);
     }
 
-    async registerMember(data) {
+    async adminRegisterMember(data) {
+        return this.registerMember(data, "Approved");
+    }
+
+    async registerMember(data, status = "PendingApproval") {
         return this.execute(async () => {
             const user = await userModel.findOneAndUpdate(
                 {
@@ -26,7 +30,7 @@ class MemberService extends BaseService {
             return this.model.create({
                 userId: user._doc._id,
                 ...data,
-                status: "PendingApproval",
+                status: status,
             });
         });
     }
