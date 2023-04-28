@@ -47,8 +47,8 @@ router.get("/:id", async (req, res) => {
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
 
-router.get("/all/member/", async (req, res) => {
-    const serviceResponse = await service.getAllByCriteria({});
+router.get("/search/all/", async (req, res) => {
+    const serviceResponse = await service.searchByCriteria(req.query);
 
     requestResponsehelper.sendResponse(res, serviceResponse);
 });

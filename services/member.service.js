@@ -44,6 +44,60 @@ class MemberService extends BaseService {
             );
         });
     }
+
+    async searchByCriteria(criteria) {
+        const pagination = {
+            pageNumber : criteria.pageNumber,
+            pageSize : criteria.pageSize
+        }
+        const paginationErrors =
+            this.validateAndSanitizePaginationProps(pagination);
+        if (paginationErrors) {
+            return paginationErrors;
+        }
+
+        const query = {
+        };
+
+        if (criteria.name) {
+            query["name"] = new RegExp(criteria.name, "i");
+        }
+
+        if (criteria.plotNumber) {
+            query["plotNumber"] = new RegExp(criteria.plotNumber, "i");
+        }
+
+        if (criteria.flatNumber) {
+            query["flatNumber"] = new RegExp(criteria.flatNumber, "i");
+        }
+
+        if (criteria.buildingName) {
+            query["buildingName"] = new RegExp(criteria.buildingName, "i");
+        }
+
+        if (criteria.vehicleNumber) {
+            query["vehicleNumber"] = new RegExp(criteria.vehicleNumber, "i");
+        }
+
+        if (criteria.phoneNumber) {
+            query["phoneNumber"] = phoneNumber;
+        }
+
+
+        return this.execute(async () => {
+            return {
+                items: await this.model.find(
+                    query,
+                    {},
+                    {
+                        skip: pagination.pageSize * (pagination.pageNumber - 1),
+                        limit: pagination.pageSize,
+                    }
+                ),
+                totalItemsCount: await this.model.countDocuments(query),
+            };
+        });
+    }
 }
 
 module.exports = new MemberService(MemberModel, "member");
