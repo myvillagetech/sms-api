@@ -49,4 +49,16 @@ router.get("/all/member/pending-approval", async (req, res) => {
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
 
+router.put("/admin/approve-member/:memberId", async (req, res) => {
+    const serviceResponse = await service.updateMemberStatus(req.params.memberId, "Approved");
+
+    requestResponsehelper.sendResponse(res, serviceResponse);
+});
+
+router.put("/admin/reject-member/:memberId", async (req, res) => {
+    const serviceResponse = await service.updateMemberStatus(req.params.memberId, "Rejected");
+
+    requestResponsehelper.sendResponse(res, serviceResponse);
+});
+
 module.exports = router;

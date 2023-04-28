@@ -26,6 +26,16 @@ class MemberService extends BaseService {
             return this.model.create({ userId: user._doc._id, ...data });
         });
     }
+
+    async updateMemberStatus(memberId, status) {
+        return this.execute(() => {
+            return this.model.findOneandUpdateById(
+                memberId,
+                { status: status },
+                { new: true }
+            );
+        });
+    }
 }
 
 module.exports = new MemberService(MemberModel, "member");
