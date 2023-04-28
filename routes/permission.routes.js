@@ -38,7 +38,7 @@ router.put(
             return;
         }
 
-        const serviceResponse = await service.update(req.body, req.params.id);
+        const serviceResponse = await service.update(req.params.id, req.body);
 
         requestResponsehelper.sendResponse(res, serviceResponse);
     }
