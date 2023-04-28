@@ -22,5 +22,5 @@ process.on('uncaughtException', function (error) {
   console.log(error.stack);
 });
 
-app.listen(2100, () => console.log("Server started on port 2100"));
+app.listen(3100, () => console.log("Server started on port 3100"));
 module.exports.handler = serverless(app);

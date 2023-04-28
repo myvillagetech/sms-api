@@ -9,7 +9,7 @@ class MemberService extends BaseService {
 
     async registerMember(data) {
         return this.execute(async () => {
-            const user = await userModel.updateOne(
+            const user = await userModel.findOneAndUpdate(
                 {
                     phoneNumber: data.phoneNumber,
                 },
@@ -23,7 +23,11 @@ class MemberService extends BaseService {
                 }
             );
 
-            return this.model.create({ userId: user._doc._id, ...data });
+            return this.model.create({
+                userId: user._doc._id,
+                ...data,
+                status: "PendingApproval",
+            });
         });
     }
 
