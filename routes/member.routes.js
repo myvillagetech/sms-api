@@ -12,7 +12,7 @@ router.post(
         if (ValidationHelper.requestValidationErrors(req, res)) {
             return;
         }
-        const serviceResponse = await service.create(req.body);
+        const serviceResponse = await service.registerMember(req.body);
         requestResponsehelper.sendResponse(res, serviceResponse);
     }
 );
@@ -35,8 +35,16 @@ router.get("/:id", async (req, res) => {
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
 
-router.get("/all/member", async (req, res) => {
+router.get("/all/member/", async (req, res) => {
     const serviceResponse = await service.getAllByCriteria({});
+
+    requestResponsehelper.sendResponse(res, serviceResponse);
+});
+
+router.get("/all/member/pending-approval", async (req, res) => {
+    const serviceResponse = await service.getAllByCriteria({
+        status: "PendingApproval"
+    });
 
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
