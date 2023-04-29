@@ -1,5 +1,5 @@
 module.exports = {
-    name: {
-        notEmpty: true,
-    }
+    // name: {
+    //     notEmpty: true,
+    // }
 }
