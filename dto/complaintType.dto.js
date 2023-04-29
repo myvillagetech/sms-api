@@ -1,11 +1,11 @@
 module.exports = {
-    name: {
-        notEmpty: true,
-    },
-    contactPersonName: {
-        notEmpty: true,
-    },
-    contactPersonPhone: {
-        notEmpty: true,
-    }
+    // name: {
+    //     notEmpty: true,
+    // },
+    // contactPersonName: {
+    //     notEmpty: true,
+    // },
+    // contactPersonPhone: {
+    //     notEmpty: true,
+    // }
 }
