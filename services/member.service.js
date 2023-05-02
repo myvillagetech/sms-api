@@ -47,9 +47,9 @@ class MemberService extends BaseService {
 
     async searchByCriteria(criteria) {
         const pagination = {
-            pageNumber : criteria.pageNumber,
-            pageSize : criteria.pageSize
-        }
+            pageNumber: criteria.pageNumber,
+            pageSize: criteria.pageSize,
+        };
         const paginationErrors =
             this.validateAndSanitizePaginationProps(pagination);
         if (paginationErrors) {
@@ -57,6 +57,7 @@ class MemberService extends BaseService {
         }
 
         const query = {
+            status: { $ne: "PendingApproval" },
         };
 
         if (criteria.name) {
@@ -82,7 +83,6 @@ class MemberService extends BaseService {
         if (criteria.phoneNumber) {
             query["phoneNumber"] = phoneNumber;
         }
-
 
         return this.execute(async () => {
             return {
