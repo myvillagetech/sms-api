@@ -35,6 +35,12 @@ router.get("/:id", async (req, res) => {
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
 
+router.get("/all/user/:userId", async (req, res) => {
+    const serviceResponse = await service.getUserAMCs(req.params.userId, req.query);
+
+    requestResponsehelper.sendResponse(res, serviceResponse);
+});
+
 router.get("/all/amc-entry", async (req, res) => {
     const serviceResponse = await service.getAllByCriteria({});
 
