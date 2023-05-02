@@ -41,6 +41,12 @@ router.get("/user-raised-complaints/:userId", async (req, res) => {
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
 
+router.post("/get/statusCounts", async (req, res) => {
+    const serviceResponse = await service.getStatusCounts(req.body);
+
+    requestResponsehelper.sendResponse(res, serviceResponse);
+});
+
 router.get("/all/complaint", async (req, res) => {
     const serviceResponse = await service.getAllByCriteria({});
 

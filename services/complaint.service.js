@@ -8,7 +8,6 @@ class ComplaintService extends BaseService {
     }
 
     async getUserComplaints(userId, pagination = {}) {
-
         const paginationErrors =
             this.validateAndSanitizePaginationProps(pagination);
         if (paginationErrors) {
@@ -17,7 +16,7 @@ class ComplaintService extends BaseService {
 
         const query = {
             raisedBy: new mongoose.Types.ObjectId(userId),
-        }
+        };
         return this.execute(async () => {
             return {
                 items: await this.model.find(
@@ -32,6 +31,19 @@ class ComplaintService extends BaseService {
             };
         });
     }
+
+    getStatusCounts(criteria) {
+        return this.execute(() => {
+            return this.model.aggregate([
+                {
+                    $group: {
+                        _id: { status: "$status" },
+                        count: { $sum: 1 },
+                    },
+                },
+            ]);
+        });
+    }
 }
 
-module.exports = new ComplaintService(ComplaintModel, 'complaint');
+module.exports = new ComplaintService(ComplaintModel, "complaint");
