@@ -17,19 +17,7 @@ class ComplaintService extends BaseService {
         const query = {
             raisedBy: new mongoose.Types.ObjectId(userId),
         };
-        return this.execute(async () => {
-            return {
-                items: await this.model.find(
-                    query,
-                    {},
-                    {
-                        skip: pagination.pageSize * (pagination.pageNumber - 1),
-                        limit: pagination.pageSize,
-                    }
-                ),
-                totalItemsCount: await this.model.countDocuments(query),
-            };
-        });
+        return this.paginationResults(query, pagination);
     }
 
     getStatusCounts(criteria) {
