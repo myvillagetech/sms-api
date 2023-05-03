@@ -8,16 +8,8 @@ class ComplaintService extends BaseService {
     }
 
     async getUserComplaints(userId, pagination = {}) {
-        const paginationErrors =
-            this.validateAndSanitizePaginationProps(pagination);
-        if (paginationErrors) {
-            return paginationErrors;
-        }
 
-        const query = {
-            raisedBy: new mongoose.Types.ObjectId(userId),
-        };
-        return this.paginationResults(query, pagination);
+        return this.preparePaginationAndReturnData(query, criteria);
     }
 
     getStatusCounts(criteria) {
