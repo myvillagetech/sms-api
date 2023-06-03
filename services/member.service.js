@@ -81,7 +81,7 @@ class MemberService extends BaseService {
         }
 
         if (criteria.phoneNumber) {
-            query["phoneNumber"] = phoneNumber;
+            query["phoneNumber"] =criteria.phoneNumber;
         }
 
         return this.paginationResults(query, pagination);
