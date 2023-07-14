@@ -61,6 +61,14 @@ router.get("/all/member/pending-approval", async (req, res) => {
     requestResponsehelper.sendResponse(res, serviceResponse);
 });
 
+router.get("/all/member/rejected", async (req, res) => {
+    const serviceResponse = await service.getAllByCriteria({
+        status: "Rejected"
+    });
+
+    requestResponsehelper.sendResponse(res, serviceResponse);
+});
+
 router.put("/admin/approve-member/:memberId", async (req, res) => {
     const serviceResponse = await service.updateMemberStatus(req.params.memberId, "Approved");
 
