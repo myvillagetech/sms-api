@@ -39,7 +39,7 @@ const EventSchema = new mongoose.Schema(
             required: true,
         },
         members: {
-            type: UserModel,
+            type: [UserModel],
             required : true
         },
         startDate : {
