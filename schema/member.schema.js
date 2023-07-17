@@ -24,18 +24,6 @@ const MemberSchema = new mongoose.Schema(
             required: true,
             enum: ["PendingApproval", "Approved", "Rejected"],
         },
-        plotNumber: {
-            type: String,
-            required: true,
-        },
-        flatNumber: {
-            type: String,
-            required: true,
-        },
-        buildingName: {
-            type: String,
-            required: true,
-        },
         phoneNumber: {
             type: Number,
             required: true,
@@ -43,14 +31,10 @@ const MemberSchema = new mongoose.Schema(
         alternatePhoneNumber: {
             type: Number,
         },
-        vehicleNumber: {
-            type: String,
-            required: true,
-        },
-        location: {
-            latitute: { type: String },
-            longitude: { type: String },
-        },
+        properties: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "property",
+        }],
         memberPhoto: {
             type: String,
         },

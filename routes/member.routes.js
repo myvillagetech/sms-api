@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { checkSchema } = require("express-validator");
 const service = require("../services/member.service");
+const propertiesService = require("../services/property.service");
 const requestResponsehelper = require("@baapcompany/core-api/helpers/requestResponse.helper");
 const ValidationHelper = require("@baapcompany/core-api/helpers/validation.helper");
 
@@ -11,6 +12,16 @@ router.post(
     async (req, res, next) => {
         if (ValidationHelper.requestValidationErrors(req, res)) {
             return;
+        }
+        if(req?.body?.properties){
+            req.body.properties = await propertiesService.bulkAdd(req?.body?.properties);
+        }else{
+            res.status(400).send(
+                sanitizeResponseObject({
+                    status: "Failed",
+                    message: 'Properties are empty',
+                })
+            );
         }
         const serviceResponse = await service.registerMember(req.body);
         requestResponsehelper.sendResponse(res, serviceResponse);
