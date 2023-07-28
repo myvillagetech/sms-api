@@ -4,7 +4,7 @@ const UserSchema = new mongoose.Schema(
     {
         name: {
             type: String,
-            required: true,
+            required: false,
         },
         password: {
             type: String,
@@ -28,6 +28,11 @@ const UserSchema = new mongoose.Schema(
         mpin: {
             type: Number,
         },
+
+        memberId : {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'member'
+        }
     },
     { strict: false, timestamps: true }
 );

@@ -41,9 +41,13 @@ class AuthService extends BaseService {
                     expiresIn: 86400,
                 }
             );
+            console.log(user);
 
             return new ServiceResponse({
-                data: token,
+                data: {
+                    token : token,
+                    memberId : user.memberId
+                },
             });
         } catch (error) {
             return new ServiceResponse({
@@ -185,10 +189,10 @@ class AuthService extends BaseService {
     async signUp(signupDto) {
         const verfiedMobile = await userSignUpOtpModel.findOne({phoneNumber: signupDto.phoneNumber});
 
-        if(!verfiedMobile) {
+        if(verfiedMobile) {
             return new ServiceResponse({
                 isError: true,
-                message: "user phoneNumber need to be verified before signup",
+                message: "User with this number allready Exists",
             });
         }
         return userService.save(signupDto);

@@ -53,7 +53,7 @@ router.put("/:id", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    const serviceResponse = await service.getById(req.params.id);
+    const serviceResponse = await service.getByIdAndPopulate(req.params.id,['properties']);
 
     requestResponsehelper.sendResponse(res, serviceResponse);
 });

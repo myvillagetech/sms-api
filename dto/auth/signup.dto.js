@@ -1,16 +1,17 @@
 module.exports = {
     name: {
-        isLength: {
-            options: { min: 3 },
-        },
+        notEmpty : false
     },
     phoneNumber: {
         notEmpty: true,
     },
     email: {
-        notEmpty: true,
+        notEmpty: false,
     },
     password: {
         notEmpty: true,
     },
+    memberId: {
+        notEmpty: false
+    }
 };

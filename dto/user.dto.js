@@ -1,14 +1,17 @@
 module.exports = {
     name: {
-        notEmpty: true,
+        notEmpty: false,
     },
     password: {
         notEmpty: true,
     },
     email: {
-        notEmpty: true,
+        notEmpty: false,
     },
     phoneNumber: {
         notEmpty: true,
     },
+    memberId: {
+        notEmpty: true
+    }
 };
